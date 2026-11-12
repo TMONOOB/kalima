@@ -1,0 +1,31 @@
+{
+ "name": "Kalima Corpus",
+ "short_name": "Kalima",
+ "description": "Kalima is a free, friendly English corpus: search 1.1 million words of real English and see every word’s word type explained in plain English and Arabic.",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "any",
+ "background_color": "#F1F3F6",
+ "theme_color": "#FFD43B",
+ "lang": "en",
+ "dir": "auto",
+ "icons": [
+  {
+   "src": "icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "icons/icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
