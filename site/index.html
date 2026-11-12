@@ -2395,7 +2395,7 @@ function taggedHtml(raw){
   }
   const total = counts.reduce((a,b)=>a+b,0) || 1;
   const labelsSeg = '<span class="seg" data-seg="labels">'+[['simple',t('labels.simple')],['penn',t('labels.penn')]].map(([v,l])=>'<button type="button" data-v="'+v+'" aria-pressed="'+((state.penn?'penn':'simple')===v)+'">'+esc(l)+'</button>').join('')+'</span>';
-  return '<div class="toolbar"><label class="check"><input type="checkbox" id="tagUnder" '+(state.tagUnder?'checked':'')+'> '+esc(t('t.under'))+'</label>'+(state.tagUnder?'<span>'+esc(t('labels'))+'</span>'+labelsSeg:'')+'<span class="grow"></span><button type="button" class="btn ghost sm" id="tagToAdd">'+esc(t('t.add'))+'</button></div>'+
+  return '<div class="toolbar"><label class="check"><input type="checkbox" id="tagUnder" '+(state.tagUnder?'checked':'')+'> '+esc(t('t.under'))+'</label>'+(state.tagUnder?'<span>'+esc(t('labels'))+'</span>'+labelsSeg:'')+'</div>'+
     '<p class="tapnote">'+esc(t('j.tap'))+'</p><div class="box" dir="ltr">'+body+'</div>'+
     '<h3 style="margin-top:20px;font-size:16px">'+esc(t('t.counts'))+'</h3><div class="legend-big">'+POS.map((p,i)=>'<div class="p'+i+'"><span class="dot"></span><span>'+esc(posName(i))+'</span><span class="n">'+counts[i]+' · '+Math.round(counts[i]/total*100)+'%</span></div>').join('')+'</div>';
 }

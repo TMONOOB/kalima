@@ -1,6 +1,6 @@
 // Kalima offline support. The cache name below changes automatically each time the site is rebuilt,
 // so visitors get new data on their next visit and old copies are deleted.
-const VERSION = 'kalima-c5df944ab533';
+const VERSION = 'kalima-e82df0a4c11c';
 const SHELL = ['./', 'index.html', 'vendor/compromise.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 const DATA = ['data/ewt.txt', 'data/gum.txt', 'data/books.txt', 'data/pud.txt', 'data/model.json'];
