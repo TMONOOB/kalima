@@ -58,7 +58,7 @@ spam or English with mistakes can't go straight into the corpus.
 - **compromise library:** MIT licence, `site/vendor/compromise-LICENSE.txt`.
 - **Names data:** `pipeline/names/pnbc` is CC0 (public domain); the lists in `pipeline/names/curated_*.txt`
   were written for Kalima.
-- **Kalima's own code:** no licence has been chosen yet, so all rights are reserved until a `LICENSE` file is added.
+- **Kalima's own code, design and wording:** © 2026 Tyab Mohammad, all rights reserved. See `LICENSE`.
 
 This is a plain-language summary, not legal advice.
 

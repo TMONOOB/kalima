@@ -1,0 +1,18 @@
+Kalima Corpus
+Copyright © 2026 Tyab Mohammad. All rights reserved.
+
+This copyright covers Kalima's own code, design and wording, including site/index.html,
+site/sw.js, the scripts in pipeline/, the hand-written names lists and the starter texts.
+No part of it may be copied, changed or redistributed without written permission from
+the copyright holder.
+
+Some parts of this repository come from other people and keep their own licences:
+
+- site/data/ewt.txt, site/data/gum.txt, site/data/pud.txt and site/data/model.json:
+  Creative Commons licences, listed in site/data/LICENSES.md
+- site/data/books.txt: public domain
+- site/vendor/compromise.js and pipeline/compromise-14.14.4.cjs: MIT licence,
+  in site/vendor/compromise-LICENSE.txt
+- pipeline/names/pnbc: CC0, in pipeline/names/pnbc/LICENSE
+
+Nothing in this notice limits the rights that those licences give.
