@@ -1,9 +1,9 @@
 // Kalima offline support. The cache name below changes automatically each time the site is rebuilt,
 // so visitors get new data on their next visit and old copies are deleted.
-const VERSION = 'kalima-23d0a3b49289';
+const VERSION = 'kalima-789bde6555bb';
 const SHELL = ['./', 'index.html', 'vendor/compromise.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
-const DATA = ['data/ewt.txt', 'data/gum.txt', 'data/books.txt', 'data/pud.txt', 'data/model.json'];
+const DATA = ['data/ewt.txt', 'data/gum.txt', 'data/books.txt', 'data/pud.txt', 'data/wiki.txt', 'data/model.json'];
 
 self.addEventListener('install', e => {
   // the page itself must be saved; the data files are saved too when possible (the browser usually has them already)

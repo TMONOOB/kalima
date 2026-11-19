@@ -36,6 +36,21 @@ python3 -I pipeline/merge_docs.py build/docs.json build/docs_more.json sources/g
 `extract.py` keeps only the GUM genres whose licence allows commercial use (academic, court, news,
 interview, bio, voyage) and drops the one court text taken from the Santa Barbara Corpus.
 
+### Wikimedia texts (Wikinews, Wikivoyage, Simple English Wikipedia)
+
+```bash
+mkdir -p sources/wiki
+for w in enwikinews enwikivoyage simplewiki; do
+  curl -L -o sources/wiki/$w.xml.bz2 https://dumps.wikimedia.org/$w/latest/$w-latest-pages-articles.xml.bz2
+done
+python3 -I pipeline/extract_wiki.py sources/wiki build/docs_wiki.json news=400000,voyage=250000,simple=350000
+```
+
+`extract_wiki.py` keeps running prose only and chooses texts about Saudi Arabia, the Gulf, Egypt and the
+Levant first (at most 40% of each project's share), then a fixed random sample. Change the numbers to add
+more or fewer words. These texts have no hand-checked labels, so they are not used for training or testing:
+step 4 tags them into their own data file, `wiki.txt`.
+
 ## 3. Train the word-type model and test it
 
 ```bash
@@ -53,6 +68,8 @@ GUM's test texts and PUD, which it never sees. The scores go to `build/model.sco
 ```bash
 node --max-old-space-size=8000 pipeline/tag_and_score.js site/index.html pipeline/compromise-14.14.4.cjs build/docs_all.json build/packs site/data/model.json
 cp build/packs/ewt.txt build/packs/gum.txt build/packs/books.txt build/packs/pud.txt site/data/
+node --max-old-space-size=8000 pipeline/tag_and_score.js site/index.html pipeline/compromise-14.14.4.cjs build/docs_wiki.json build/packs_wiki site/data/model.json
+cp build/packs_wiki/wiki.txt site/data/
 ```
 
 Texts with hand-checked labels (EWT, GUM, PUD) keep the linguists' labels; the books are labelled by the model.

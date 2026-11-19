@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Kalima is a free, friendly English corpus: search 1.1 million words of real English and see every word’s word type explained in plain English and Arabic.">
+<meta name="description" content="Kalima is a free, friendly English corpus: search 2.1 million words of real English and see every word’s word type explained in plain English and Arabic.">
 <meta name="theme-color" content="#FFD43B">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-title" content="Kalima">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kalima Corpus">
-<meta property="og:description" content="Kalima is a free, friendly English corpus: search 1.1 million words of real English and see every word’s word type explained in plain English and Arabic.">
+<meta property="og:description" content="Kalima is a free, friendly English corpus: search 2.1 million words of real English and see every word’s word type explained in plain English and Arabic.">
 <meta property="og:image" content="icons/icon-512.png">
 <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <title>Kalima Corpus</title>
@@ -722,10 +722,11 @@ const TRIES = ['decision','make','heavy','play a role','{adj} water','make a * d
 const GLOSS = [['Every',DET],['word',NOUN],['has',VERB],['a',DET],['job',NOUN]];
 const MAX_PART_WORDS = 20000;
 /* Ready-tagged collections, published next to this page and tagged with the same code (compromise 14.14.4 + the rules below). */
-const PACKS = [{k:'ewt', file:'data/ewt.txt'}, {k:'gum', file:'data/gum.txt'}, {k:'books', file:'data/books.txt'}, {k:'pud', file:'data/pud.txt'}];
-const PACK_WORDS = 1120040;
-const COL_ORDER = ['community','starter','gum','pud','ewt','books'];
+const PACKS = [{k:'ewt', file:'data/ewt.txt'}, {k:'gum', file:'data/gum.txt'}, {k:'books', file:'data/books.txt'}, {k:'pud', file:'data/pud.txt'}, {k:'wiki', file:'data/wiki.txt'}];
+const PACK_WORDS = 2116819;
+const COL_ORDER = ['community','starter','gum','pud','ewt','wiki','books'];
 const BOOK_LIST = {"1342": ["Pride and Prejudice", "Jane Austen", 1813, 1817, "uk"], "1661": ["The Adventures of Sherlock Holmes", "Arthur Conan Doyle", 1892, 1930, "uk"], "45": ["Anne of Green Gables", "L. M. Montgomery", 1908, 1942, "intl"], "113": ["The Secret Garden", "Frances Hodgson Burnett", 1911, 1924, "uk"], "74": ["The Adventures of Tom Sawyer", "Mark Twain", 1876, 1910, "intl"], "120": ["Treasure Island", "Robert Louis Stevenson", 1883, 1894, "uk"], "271": ["Black Beauty", "Anna Sewell", 1877, 1878, "uk"], "236": ["The Jungle Book", "Rudyard Kipling", 1894, 1936, "uk"], "55": ["The Wonderful Wizard of Oz", "L. Frank Baum", 1900, 1919, "intl"], "35": ["The Time Machine", "H. G. Wells", 1895, 1946, "uk"], "215": ["The Call of the Wild", "Jack London", 1903, 1916, "intl"], "11": ["Alice’s Adventures in Wonderland", "Lewis Carroll", 1865, 1898, "uk"]};
+const WIKI_KINDS = [['news','Wikinews','https://en.wikinews.org/'],['voyage','Wikivoyage','https://en.wikivoyage.org/'],['simple','Simple English Wikipedia','https://simple.wikipedia.org/']];
 const GUM_KINDS = [['academic','CC BY 4.0','https://creativecommons.org/licenses/by/4.0/'],['court','CC BY 4.0','https://creativecommons.org/licenses/by/4.0/'],['news','CC BY 2.5','https://creativecommons.org/licenses/by/2.5/'],['interview','CC BY 2.5','https://creativecommons.org/licenses/by/2.5/'],['bio','CC BY-SA 3.0','https://creativecommons.org/licenses/by-sa/3.0/'],['voyage','CC BY-SA 3.0','https://creativecommons.org/licenses/by-sa/3.0/']];
 /* Tagging accuracy measured against the hand-checked labels of UD English EWT v2.18 (see the Explore view). */
 const ACCURACY = {"date": "2026-11-06", "test": {"n": 20804, "acc": 96.2}, "gum": {"n": 9344, "acc": 97}, "pud": {"n": 18245, "acc": 96.6}, "byType": [96.9, 97.4, 90.1, 92.2, 98.4, 97.2, 98.5, 94.2, 96.8, 85.1], "mix": [[2, 0, 98, "new, general, muslim, wholesale"], [1, 0, 83, "email, compare, do, trace"], [0, 1, 65, "will, police, wares, show"], [0, 2, 55, "legal, nice, giant, secretary"], [2, 1, 51, "worried, minded, involved, pleased"], [7, 5, 43, "for, as, with, of"]], "trainWords": 251529};
@@ -929,10 +930,16 @@ en:{
  'src.books.what':'Twelve classic novels and story collections, split into parts of about 6,000 words. Their English is older and more literary than everyday English today: good for reading, but keep it in mind when you compare kinds of text.',
  'src.books.lic':'Public domain. Every author died before 1950, so these texts are in the public domain in the UK, the US and Saudi Arabia.',
  'src.books.note':'The texts come from the GITenberg mirror on GitHub. The original e-book licence pages and headers, illustration notes and italics markers were removed.',
+ 'col.wiki':'Wikimedia texts',
+ 'tag.wiki':'Wiki',
+ 'gg.simple':'Simple English Wikipedia articles',
+ 'src.wiki.what':'Modern English from three Wikimedia projects: news reports from Wikinews, travel guides from Wikivoyage and plain-English articles from Simple English Wikipedia. Texts about Saudi Arabia, the Gulf, Egypt and the Levant were chosen first. Only running prose is kept: tables, lists, references and picture captions were removed.',
+ 'src.wiki.lic':'Wikinews: CC BY 2.5 (CC BY 4.0 for articles from 16 December 2024, public domain before 25 September 2005). Wikivoyage and Simple English Wikipedia: CC BY-SA 4.0.',
+ 'src.wiki.note':'Each text links to its original page, which lists everyone who wrote it. All these licences allow commercial use with credit. Changed versions of the CC BY-SA texts must be shared under the same licence. Downloaded from dumps.wikimedia.org in November 2026.',
  'src.pud.what':'About 1,000 sentences from news stories and Wikipedia, checked word by word by linguists. A quarter were translated into English from German, French, Italian or Spanish.',
  'c.verb.toinf':'{w} is the infinitive marker. With the base verb {x} it makes a to-infinitive (also called the full infinitive), so Kalima counts it as part of the verb. Before a noun phrase, as in to the beach, to is a preposition.',
  'acc.pud':'news and Wikipedia sentences from PUD ({n} words)',
- 'acc.gold':'Texts from EWT, GUM and PUD in the corpus show the linguists’ own labels, checked by hand. The model labels the books, the starter texts and anything you add or type.',
+ 'acc.gold':'Texts from EWT, GUM and PUD in the corpus show the linguists’ own labels, checked by hand. The model labels the books, the Wikimedia texts, the starter texts and anything you add or type.',
  'st.loadingModel':'Loading the word-type model…',
  'd.existential':'existential there',
  'd.relative':'relative',
@@ -1136,10 +1143,16 @@ ar:{
  'src.books.what':'اثنتا عشرة رواية ومجموعة قصصية كلاسيكية، مقسّمة إلى أجزاء من نحو 6,000 كلمة. لغتها أقدم وأكثر أدبية من الإنجليزية اليومية اليوم: مفيدة للقراءة، لكن تذكّر ذلك عند مقارنة أنواع النصوص.',
  'src.books.lic':'ملك عام. توفي كل المؤلفين قبل عام 1950، لذا فهذه النصوص في الملك العام في بريطانيا والولايات المتحدة والسعودية.',
  'src.books.note':'النصوص مأخوذة من نسخة GITenberg على GitHub، بعد حذف صفحات ترخيص الكتب الإلكترونية الأصلية وعناوينها وملاحظات الرسوم وعلامات الخط المائل.',
+ 'col.wiki':'نصوص ويكيميديا',
+ 'tag.wiki':'ويكي',
+ 'gg.simple':'مقالات Simple English Wikipedia',
+ 'src.wiki.what':'إنجليزية حديثة من ثلاثة مشاريع تابعة لويكيميديا: تقارير إخبارية من Wikinews، وأدلة سفر من Wikivoyage، ومقالات بإنجليزية مبسّطة من Simple English Wikipedia. اخترنا أولًا النصوص التي تتناول السعودية والخليج ومصر وبلاد الشام. أبقينا النثر المتصل فقط، وحذفنا الجداول والقوائم والمراجع وتعليقات الصور.',
+ 'src.wiki.lic':'Wikinews: ترخيص CC BY 2.5 (وCC BY 4.0 للمقالات المنشورة منذ 16 ديسمبر 2024، وملك عام لما نُشر قبل 25 سبتمبر 2005). Wikivoyage وSimple English Wikipedia: ترخيص CC BY-SA 4.0.',
+ 'src.wiki.note':'يرتبط كل نص بصفحته الأصلية التي تذكر جميع من كتبوه. تسمح كل هذه التراخيص بالاستخدام التجاري بشرط ذكر المصدر، ويجب نشر أي نسخة معدَّلة من نصوص CC BY-SA بالترخيص نفسه. نُزّلت النصوص من dumps.wikimedia.org في نوفمبر 2026.',
  'src.pud.what':'نحو 1,000 جملة من الأخبار وويكيبيديا، راجعها لغويون كلمة كلمة. ترجم ربعها إلى الإنجليزية من الألمانية أو الفرنسية أو الإيطالية أو الإسبانية.',
  'c.verb.toinf':'{w} علامة المصدر. مع الفعل {x} في صيغة المصدر تكوّن المصدر مع to (to-infinitive)، لذا تعدّها «كلمة» جزءًا من الفعل. أما قبل عبارة اسمية، كما في to the beach، فهي حرف جر.',
  'acc.pud':'جمل أخبار وويكيبيديا من PUD ({n} كلمة)',
- 'acc.gold':'نصوص EWT وGUM وPUD في المدوّنة تعرض تصنيفات اللغويين أنفسهم بعد مراجعتها يدويًا. أما الكتب والنصوص الأساسية وكل ما تضيفه أو تكتبه فيصنّفه النموذج.',
+ 'acc.gold':'نصوص EWT وGUM وPUD في المدوّنة تعرض تصنيفات اللغويين أنفسهم بعد مراجعتها يدويًا. أما الكتب ونصوص ويكيميديا والنصوص الأساسية وكل ما تضيفه أو تكتبه فيصنّفه النموذج.',
  'st.loadingModel':'جارٍ تحميل نموذج أنواع الكلمات…',
  'd.existential':'there الوجودية',
  'd.relative':'موصول',
@@ -1591,12 +1604,16 @@ let packDocs = [];
 let packState = 'loading'; // loading | ready | partial | failed
 let packsDone = 0;
 function unescField(s){ return s.indexOf('\\')<0 ? s : s.replace(/\\(.)/g, (m,c)=> c==='n' ? '\n' : c==='t' ? '\t' : c); }
+/* One shared copy of each distinct word string: the corpus repeats the same few hundred thousand strings millions of times, so this saves a lot of memory on phones. */
+const WORD_STRS = new Map();
+function intern(s){ const v = WORD_STRS.get(s); if (v !== undefined) return v; WORD_STRS.set(s, s); return s; }
 function parsePack(txt, col){
   const CH = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!$%&()*+,-./:;<=>?@[]^_`{|}~';
   const out = []; let cmap = null, doc = null, sent = null;
-  const lines = txt.split('\n');
-  for (let li=0; li<lines.length; li++){
-    const line = lines[li];
+  // read line by line rather than splitting the whole file at once, which keeps memory lower while loading on phones
+  for (let pos = 0, n = txt.length; pos < n; ){
+    let end = txt.indexOf('\n', pos); if (end < 0) end = n;
+    const line = txt.slice(pos, end); pos = end + 1;
     if (!line) continue;
     if (line.charCodeAt(0)===35){
       if (line==='#S'){ if (doc){ sent = []; doc.sents.push(sent); } continue; }
@@ -1607,9 +1624,9 @@ function parsePack(txt, col){
     if (!sent || !cmap) continue;
     const f = line.split('\t'), c = cmap[f[0]];
     if (!c) continue;
-    const w = unescField(f[1]||'');
+    const w = intern(unescField(f[1]||''));
     const pf = f.length>3 ? f[3] : '';
-    sent.push({w, pre: f.length>2 ? unescField(f[2]) : '', post: pf==='' ? ' ' : pf==='\\_' ? '' : unescField(pf), p:c[0], d:c[1], tg:c[2], lm: f.length>4 && f[4] ? unescField(f[4]) : normWord(w)});
+    sent.push({w, pre: f.length>2 && f[2] ? intern(unescField(f[2])) : '', post: pf==='' ? ' ' : pf==='\\_' ? '' : intern(unescField(pf)), p:c[0], d:c[1], tg:c[2], lm: intern(f.length>4 && f[4] ? unescField(f[4]) : normWord(w))});
   }
   const docs = [];
   for (const d of out){
@@ -1661,7 +1678,7 @@ function buildIndex(docs){
     const ti = texts.length, a = F.length;
     for (const s of sl){
       const sa = F.length;
-      for (const k of s){ F.push(normWord(k.w)); W.push(k.w); PRE.push(k.pre); POST.push(k.post); P.push(k.p); TG.push(k.tg); DT.push(k.d); L.push(k.lm); S.push(sents.length); T.push(ti); }
+      for (const k of s){ F.push(intern(normWord(k.w))); W.push(k.w); PRE.push(k.pre); POST.push(k.post); P.push(k.p); TG.push(k.tg); DT.push(k.d); L.push(k.lm); S.push(sents.length); T.push(ti); }
       sents.push({a:sa, b:F.length, t:ti});
     }
     texts.push({key:d.key, id:d.id, title:d.title, type:d.type, region:d.region, source:d.source||'', community:!!d.community, col:d.col||(d.community?'community':'starter'), genre:d.genre||'', lic:d.lic||'', licUrl:d.licUrl||'', url:d.url||'', author:d.author||'', by:d.by||null, addedAt:d.addedAt||'', a, b:F.length, words:F.length-a});
@@ -2099,7 +2116,7 @@ function renderWordList(){
 }
 function colTag(c){
   if (c==='community') return '<span class="tag comm">'+esc(t('x.comm'))+'</span>';
-  if (c==='ewt' || c==='gum' || c==='books' || c==='pud') return '<span class="tag src">'+esc(t('tag.'+c))+'</span>';
+  if (c==='ewt' || c==='gum' || c==='books' || c==='pud' || c==='wiki') return '<span class="tag src">'+esc(t('tag.'+c))+'</span>';
   return '<span class="tag">'+esc(t('x.starter'))+'</span>';
 }
 function renderLibrary(){
@@ -2145,6 +2162,15 @@ function renderSources(){
       '<div class="tablewrap src-t"><table><thead><tr><th>'+esc(t('src.bookTitle'))+'</th><th>'+esc(t('src.author'))+'</th><th class="n">'+esc(t('src.year'))+'</th><th class="n">'+esc(t('src.wordsCol'))+'</th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
       '<dl class="src-dl"><dt>'+esc(t('src.licence'))+'</dt><dd>'+esc(t('src.books.lic'))+'</dd><dt>'+esc(t('src.link'))+'</dt><dd dir="ltr">'+link('https://github.com/GITenberg','github.com/GITenberg')+'</dd></dl>'+
       '<p class="src-note">'+esc(t('src.books.note'))+'</p></div>');
+  }
+  if (by.wiki){
+    const kinds = WIKI_KINDS.filter(k=>by.wiki.g[k[0]]);
+    const rows = kinds.map(k=>'<tr><td>'+esc(t('gg.'+k[0]))+'</td><td class="n num">'+fmt(by.wiki.g[k[0]])+'</td></tr>').join('');
+    cards.push('<div class="box src"><h3>'+esc(t('col.wiki'))+'</h3>'+cnt('wiki')+'<p>'+esc(t('src.wiki.what'))+'</p>'+
+      '<div class="tablewrap src-t"><table><thead><tr><th>'+esc(t('src.kind'))+'</th><th class="n">'+esc(t('src.wordsCol'))+'</th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
+      '<dl class="src-dl"><dt>'+esc(t('src.licence'))+'</dt><dd>'+esc(t('src.wiki.lic'))+'</dd>'+
+      '<dt>'+esc(t('src.link'))+'</dt><dd dir="ltr">'+kinds.map(k=>link(k[2], k[2].replace(/^https:\/\/|\/$/g,''))).join('<br>')+'</dd></dl>'+
+      '<p class="src-note">'+esc(t('src.wiki.note'))+'</p></div>');
   }
   if (by.pud) cards.push('<div class="box src"><h3>'+esc(t('col.pud'))+'</h3>'+cnt('pud')+'<p>'+esc(t('src.pud.what'))+'</p>'+
     '<dl class="src-dl"><dt>'+esc(t('src.licence'))+'</dt><dd>'+lic('CC BY-SA 3.0','https://creativecommons.org/licenses/by-sa/3.0/')+'</dd>'+

@@ -1,6 +1,6 @@
 # Kalima Corpus
 
-Kalima is a free, friendly English corpus for learners and teachers. It holds 1.13 million words of real
+Kalima is a free, friendly English corpus for learners and teachers. It holds 2.1 million words of real
 English. Every word shows its word type (noun, verb, adjective and so on) in plain English and Arabic,
 with an explanation of why.
 
@@ -12,7 +12,7 @@ Kalima needs no server, database or account to run, and it keeps working offline
 | Folder | What it holds |
 | --- | --- |
 | `site/` | The website itself: the page, data files, word-type model, icons and offline support. Publish this folder. |
-| `site/data/` | The texts with their word types (`ewt.txt`, `gum.txt`, `pud.txt`, `books.txt`) and the model (`model.json`). Licences are in `site/data/LICENSES.md`. |
+| `site/data/` | The texts with their word types (`ewt.txt`, `gum.txt`, `pud.txt`, `books.txt`, `wiki.txt`) and the model (`model.json`). Licences are in `site/data/LICENSES.md`. |
 | `site/vendor/` | The compromise language library (MIT licence), served from the site so Kalima doesn't depend on another server. |
 | `pipeline/` | The scripts that build the data files, train the model and write the names list. See `pipeline/README.md`. |
 | `.github/workflows/pages.yml` | Publishes `site/` to GitHub Pages every time you push. |
@@ -54,7 +54,7 @@ spam or English with mistakes can't go straight into the corpus.
 
 - **Texts and model:** see `site/data/LICENSES.md`. The EWT, GUM and PUD texts and the model trained on
   them are under Creative Commons licences that allow commercial use with credit. Changed versions of the
-  CC BY-SA material must be shared under the same licence. The books are in the public domain.
+  CC BY-SA material must be shared under the same licence. The books are in the public domain. The Wikimedia texts (`wiki.txt`) are CC BY 2.5 / CC BY 4.0 (Wikinews) and CC BY-SA 4.0 (Wikivoyage, Simple English Wikipedia).
 - **compromise library:** MIT licence, `site/vendor/compromise-LICENSE.txt`.
 - **Names data:** `pipeline/names/pnbc` is CC0 (public domain); the lists in `pipeline/names/curated_*.txt`
   were written for Kalima.
