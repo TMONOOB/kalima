@@ -116,6 +116,9 @@ html[lang="ar"] .gw small{font-family:var(--f-ar);text-transform:none;letter-spa
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.ghost:hover{background:var(--hover);box-shadow:none;transform:none}
 .btn.sm{padding:7px 12px;font-size:14px;border-radius:9px;border-width:1px}
+.btn .ico{width:16px;height:16px;flex:none;vertical-align:-3px;margin-inline-end:6px}
+.btn.speaking{border-color:var(--ink-2)}
+.lbl-src{font-size:13px;color:var(--ink-3)}
 .opts{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:14px}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;padding:3px;background:var(--paper);gap:2px;flex-wrap:wrap}
 .seg button{border:0;background:transparent;border-radius:7px;padding:6px 11px;font-size:14px;font-weight:700;color:var(--ink-2);cursor:pointer;white-space:nowrap}
@@ -499,6 +502,7 @@ html[lang="ar"] .mx .arrow{transform:scaleX(-1)}
           </div>
           <label class="sel"><span data-i18n="opt.pos">Word type</span><select id="posSel"></select></label>
           <label class="sel"><span data-i18n="opt.type">Texts</span><select id="typeSel"></select></label>
+          <label class="sel"><span data-i18n="opt.check">Labels</span><select id="goldSel"></select></label>
         </div>
         <div class="tries" id="tries"><span data-i18n="try">Try</span></div>
       </div>
@@ -568,52 +572,6 @@ html[lang="ar"] .mx .arrow{transform:scaleX(-1)}
     </div>
   </section>
 
-  <!-- ADD -->
-  <section class="view" id="v-add" hidden>
-    <div class="wrap">
-      <div class="section">
-        <h2 data-i18n="a.title">Add a text</h2>
-        <p class="hint" data-i18n="a.lede">Help the corpus grow. Every text you add becomes searchable for everyone who uses this page.</p>
-        <div class="addgrid">
-          <div>
-            <div class="notice" id="addNotice" hidden></div>
-            <form class="form" id="addForm" novalidate>
-              <label class="field"><span data-i18n="a.f.title">Title</span><input type="text" id="fTitle" maxlength="140" dir="auto"></label>
-              <div class="row2">
-                <label class="field"><span data-i18n="a.f.type">Text type</span><select id="fType"></select></label>
-                <label class="field"><span data-i18n="a.f.region">Region</span><select id="fRegion"></select></label>
-              </div>
-              <label class="field"><span data-i18n="a.f.source">Author or source</span><input type="text" id="fSource" maxlength="200" dir="auto" data-i18n-ph="a.f.sourcePh"></label>
-              <label class="field"><span data-i18n="a.f.text">The text</span><textarea id="fText" dir="ltr" data-i18n-ph="a.f.textPh" style="min-height:260px"></textarea></label>
-              <label class="check"><input type="checkbox" id="fLicence"> <span data-i18n="a.f.licence">I wrote this text or have permission to share it, and it contains no private information about anyone.</span></label>
-              <div class="formfoot">
-                <button class="btn" type="submit" id="fSubmit" data-i18n="a.submit">Add to the corpus</button>
-                <span class="num" id="fCount" style="color:var(--ink-3);font-size:14px"></span>
-                <span class="msg" id="fMsg" role="status"></span>
-              </div>
-            </form>
-          </div>
-          <div class="side">
-            <div class="road" id="road2"></div>
-            <div class="box">
-              <h3 data-i18n="a.guide.title">What to add</h3>
-              <ul class="guide-list">
-                <li data-i18n="a.guide.1">Your own writing, or your students’ writing with their permission.</li>
-                <li data-i18n="a.guide.2">Texts that are free to share: public domain or openly licensed.</li>
-                <li data-i18n="a.guide.3">Not newspaper articles, books or song lyrics that belong to someone else.</li>
-                <li data-i18n="a.guide.4">Remove names, phone numbers and other private details first.</li>
-              </ul>
-            </div>
-            <div class="box">
-              <h3 data-i18n="a.recent">Community texts</h3>
-              <div class="clist" id="clist"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- GUIDE -->
   <section class="view" id="v-guide" hidden>
     <div class="wrap">
@@ -652,16 +610,16 @@ html[lang="ar"] .mx .arrow{transform:scaleX(-1)}
             </div>
           </div>
           <div class="box">
-            <h3 data-i18n="g.s4">Growing to millions of words</h3>
+            <h3 data-i18n="g.s4">What’s in Kalima</h3>
             <div class="en-only">
-              <p>Kalima starts with a small set of starter texts written for it, about everyday life in Saudi Arabia, the Gulf and Egypt, plus academic writing, stories and students’ work. Anyone with contributor access can add texts, and every text becomes searchable straight away.</p>
-              <p>The first target is one million words, and the long-term goal is five million. Aim for balance: a mix of conversation, news, academic writing, stories, everyday web writing, student writing and work writing, from across the region.</p>
-              <p>Word types are labelled automatically by an open-source English tagger running in your browser. It is right most of the time, but not always, especially with unusual sentences. Treat the labels as a strong guide rather than a final answer.</p>
+              <p>Kalima holds more than two million words of real English. About a third of a million come from EWT, GUM and PUD, where linguists checked the word type of every word by hand. About one million come from Wikinews, Wikivoyage and Simple English Wikipedia: modern news, travel writing and plain-English articles, with texts about Saudi Arabia, the Gulf, Egypt and the Levant chosen first. About 800,000 come from twelve classic public-domain books, and a set of starter texts was written for Kalima about everyday life in the region.</p>
+              <p>The Explore page shows exactly how many words each collection holds, where each one comes from and its licence. Every text names its source when you open it.</p>
+              <p>Word types in the hand-checked texts are the linguists’ own. Everywhere else, Kalima’s model labels them in your browser. It is right about 96 times in 100, but it does make mistakes, especially with unusual sentences. When a label really matters, for example in a test, choose <strong>Hand-checked only</strong> under <strong>Labels</strong> in Search, or treat the label as a strong guide rather than a final answer.</p>
             </div>
             <div class="ar-only" lang="ar">
-              <p>تبدأ «كلمة» بمجموعة صغيرة من النصوص الأساسية المكتوبة لها، عن الحياة اليومية في السعودية والخليج ومصر، إضافة إلى كتابات أكاديمية وقصص وأعمال طلاب. يمكن لكل من لديه صلاحية «مساهم» إضافة نصوص، ويصبح كل نص قابلًا للبحث فورًا.</p>
-              <p>الهدف الأول مليون كلمة، والهدف البعيد خمسة ملايين. احرص على التوازن: مزيج من المحادثات والأخبار والكتابة الأكاديمية والقصص والكتابات اليومية وكتابات الطلاب، من مختلف أنحاء المنطقة.</p>
-              <p>تُصنَّف أنواع الكلمات تلقائيًا بأداة إنجليزية مفتوحة المصدر تعمل داخل متصفحك. تصيب في معظم الأحيان لكن ليس دائمًا، خصوصًا مع الجمل غير المألوفة. تعامل مع التسميات كدليل قوي لا كإجابة نهائية.</p>
+              <p>تضم «كلمة» أكثر من مليوني كلمة من الإنجليزية الحقيقية. نحو ثلث مليون منها من EWT وGUM وPUD، وقد راجع اللغويون نوع كل كلمة فيها يدويًا. ونحو مليون من Wikinews وWikivoyage وSimple English Wikipedia: أخبار حديثة وكتابات عن السفر ومقالات بإنجليزية مبسّطة، اخترنا منها أولًا النصوص التي تتناول السعودية والخليج ومصر وبلاد الشام. ونحو 800,000 من اثني عشر كتابًا كلاسيكيًا في الملك العام، إضافة إلى مجموعة من النصوص الأساسية كُتبت لـ«كلمة» عن الحياة اليومية في المنطقة.</p>
+              <p>تعرض صفحة «استكشاف» عدد كلمات كل مجموعة بالضبط، ومصدرها وترخيصها. ويذكر كل نص مصدره عند فتحه.</p>
+              <p>أنواع الكلمات في النصوص المراجَعة يدويًا هي تصنيفات اللغويين أنفسهم. أما في بقية النصوص فيصنّفها نموذج «كلمة» داخل متصفحك. يصيب في نحو 96 مرة من كل 100، لكنه يخطئ أحيانًا، خصوصًا مع الجمل غير المألوفة. وحين يكون التصنيف مهمًّا، كما في الاختبارات، اختر <strong>المراجَعة يدويًا فقط</strong> من قائمة <strong>التصنيف</strong> في البحث، أو تعامل مع التصنيف كدليل قوي لا كإجابة نهائية.</p>
             </div>
           </div>
         </div>
@@ -673,7 +631,7 @@ html[lang="ar"] .mx .arrow{transform:scaleX(-1)}
 <div class="sheet" id="sheet" hidden role="dialog" aria-labelledby="sheetTitle"><div class="wrap sheet-in" id="sheetIn"></div></div>
 
 <footer>
-  <div class="wrap"><p data-i18n="foot">© 2026 Tyab Mohammad. All rights reserved. Texts from EWT, GUM, PUD and the public-domain books keep their own licences (see Explore). Starter texts were written for Kalima; the names, people and events in them are invented. Word types are tagged automatically and can contain mistakes.</p></div>
+  <div class="wrap"><p data-i18n="foot">© 2026 Tyab Mohammad. All rights reserved. Texts from EWT, GUM, PUD, Wikinews, Wikivoyage, Simple English Wikipedia and the public-domain books keep their own licences (see Explore). Starter texts were written for Kalima; the names, people and events in them are invented. Word types outside EWT, GUM and PUD are tagged automatically and can contain mistakes.</p></div>
 </footer>
 
 <script>
@@ -720,11 +678,11 @@ const SMALL_POS = new Set([PRON,PREP,DET,CONJ,NUM,OTHER]);
 const SMALL_VERBS = new Set(['be','have','do','will','would','can','could','shall','should','may','might','must','get','to']);
 const TRIES = ['decision','make','heavy','play a role','{adj} water','make a * difference','interested in','*ly'];
 const GLOSS = [['Every',DET],['word',NOUN],['has',VERB],['a',DET],['job',NOUN]];
-const MAX_PART_WORDS = 20000;
 /* Ready-tagged collections, published next to this page and tagged with the same code (compromise 14.14.4 + the rules below). */
 const PACKS = [{k:'ewt', file:'data/ewt.txt'}, {k:'gum', file:'data/gum.txt'}, {k:'books', file:'data/books.txt'}, {k:'pud', file:'data/pud.txt'}, {k:'wiki', file:'data/wiki.txt'}];
 const PACK_WORDS = 2116819;
-const COL_ORDER = ['community','starter','gum','pud','ewt','wiki','books'];
+const GOLD_COLS = new Set(['ewt','gum','pud']);   // collections with hand-checked word types
+const COL_ORDER = ['starter','gum','pud','ewt','wiki','books'];
 const BOOK_LIST = {"1342": ["Pride and Prejudice", "Jane Austen", 1813, 1817, "uk"], "1661": ["The Adventures of Sherlock Holmes", "Arthur Conan Doyle", 1892, 1930, "uk"], "45": ["Anne of Green Gables", "L. M. Montgomery", 1908, 1942, "intl"], "113": ["The Secret Garden", "Frances Hodgson Burnett", 1911, 1924, "uk"], "74": ["The Adventures of Tom Sawyer", "Mark Twain", 1876, 1910, "intl"], "120": ["Treasure Island", "Robert Louis Stevenson", 1883, 1894, "uk"], "271": ["Black Beauty", "Anna Sewell", 1877, 1878, "uk"], "236": ["The Jungle Book", "Rudyard Kipling", 1894, 1936, "uk"], "55": ["The Wonderful Wizard of Oz", "L. Frank Baum", 1900, 1919, "intl"], "35": ["The Time Machine", "H. G. Wells", 1895, 1946, "uk"], "215": ["The Call of the Wild", "Jack London", 1903, 1916, "intl"], "11": ["Alice’s Adventures in Wonderland", "Lewis Carroll", 1865, 1898, "uk"]};
 const WIKI_KINDS = [['news','Wikinews','https://en.wikinews.org/'],['voyage','Wikivoyage','https://en.wikivoyage.org/'],['simple','Simple English Wikipedia','https://simple.wikipedia.org/']];
 const GUM_KINDS = [['academic','CC BY 4.0','https://creativecommons.org/licenses/by/4.0/'],['court','CC BY 4.0','https://creativecommons.org/licenses/by/4.0/'],['news','CC BY 2.5','https://creativecommons.org/licenses/by/2.5/'],['interview','CC BY 2.5','https://creativecommons.org/licenses/by/2.5/'],['bio','CC BY-SA 3.0','https://creativecommons.org/licenses/by-sa/3.0/'],['voyage','CC BY-SA 3.0','https://creativecommons.org/licenses/by-sa/3.0/']];
@@ -734,11 +692,11 @@ const ACCURACY = {"date": "2026-11-06", "test": {"n": 20804, "acc": 96.2}, "gum"
 /* ---------------- strings ---------------- */
 const STR = {
 en:{
- 'brand.sub':'Parts of speech, explained','nav.search':'Search corpus','nav.explore':'Explore','nav.tag':'Tag my text','nav.add':'Add a text','nav.guide':'Guide',
+ 'brand.sub':'Parts of speech, explained','nav.search':'Search corpus','nav.explore':'Explore','nav.tag':'Tag my text','nav.guide':'Guide',
  'meter.words':'{n} words',
  'hero.lede':'Search real English. See how a word is really used, which words go with it, and the job each word does in a sentence.',
  'search.label':'Word or phrase','search.ph':'Type a word or phrase, e.g. role','search.btn':'Search',
- 'mode.lemma':'All forms','mode.form':'Exact form','opt.pos':'Word type','opt.anyPos':'Any type','opt.type':'Texts','opt.allTypes':'All text types','try':'Try',
+ 'mode.lemma':'All forms','mode.form':'Exact form','opt.pos':'Word type','opt.anyPos':'Any type','opt.type':'Texts','opt.allTypes':'All text types','opt.check':'Labels','au.listen':'Listen','au.word':'Say the word','au.sent':'Hear the sentence','d.gold':'labels checked by hand','d.auto':'labels by Kalima’s model','opt.goldAll':'All texts','opt.goldOnly':'Hand-checked only','try':'Try',
  'st.loading':'Reading the corpus… {a} of {b} words','st.loadingTagger':'Loading the word-type tagger…',
  'st.basic':'The full tagger could not load, so a basic one is being used. Word types may be less accurate.',
  'st.none':'No results for “{q}”.','st.noneTip':'Check the spelling, switch to All forms, choose All text types, or try a shorter phrase.',
@@ -767,21 +725,10 @@ en:{
  'x.library':'Library','x.libHint':'Every text in the corpus. Open one to read it with word-type colours.','x.starter':'Starter','x.comm':'Community','x.wordsN':'{n} words',
  'r.back':'Back to the library','r.colour':'Word-type colours',
  't.title':'Tag my text','t.lede':'Paste any English text. Kalima shows the job of every word, the same way it does for the whole corpus.','t.label':'Your text','t.under':'Labels under words','t.counts':'Word types in your text','t.add':'Add this text to the corpus','t.empty':'Your tagged text will appear here.',
- 'a.title':'Add a text','a.lede':'Help the corpus grow. Every text you add becomes searchable for everyone who uses this page.',
- 'a.f.title':'Title','a.f.type':'Text type','a.f.region':'Region','a.f.source':'Author or source','a.f.sourcePh':'e.g. Written by me; a Grade 8 student, shared with permission','a.f.text':'The text','a.f.textPh':'Paste or type English text here',
- 'a.f.licence':'I wrote this text or have permission to share it, and it contains no private information about anyone.',
- 'a.count':'{n} words','a.submit':'Add to the corpus','a.adding':'Adding…','a.added':'Added. Your text is now part of the corpus.','a.addedParts':'Added in {n} parts. Your text is now part of the corpus.',
- 'a.min':'Add at least 30 words of English.','a.needTitle':'Give the text a title.','a.needLicence':'Please confirm you can share this text.',
- 'a.failed':'The text could not be added. Check your connection and try again.','a.full':'The corpus storage is full, so new texts can’t be added right now.',
- 'a.readonly':'You can search and read everything. Adding texts needs contributor access to this page, so ask the person who shared it with you.',
- 'a.nodb':'Adding texts to Kalima is coming soon. To see the word types in your own text now, use Word jobs.',
- 'a.slow':'Community texts can’t be reached right now. The starter corpus still works.',
- 'a.guide.title':'What to add','a.guide.1':'Your own writing, or your students’ writing with their permission.','a.guide.2':'Texts that are free to share: public domain or openly licensed.','a.guide.3':'Not newspaper articles, books or song lyrics that belong to someone else.','a.guide.4':'Remove names, phone numbers and other private details first.',
- 'a.recent':'Community texts','a.none':'No community texts yet. Yours could be the first.','a.remove':'Remove','a.confirm':'Remove this text?','a.yes':'Remove','a.no':'Keep','a.long':'Long texts are split into parts of 20,000 words.',
  'g.title':'How to use Kalima','g.lede':'A corpus is a large collection of real texts. Searching it shows how people actually use English, not only what the rules say.',
- 'g.s1':'What you can type','g.youType':'You type','g.finds':'It finds','g.s2':'Word types','g.s2p':'Every word in the corpus is labelled with the job it does. The colours are the same everywhere on this page.','g.type':'Type','g.examples':'Examples','g.tech':'Technical tags','g.s3':'What the numbers mean','g.s4':'Growing to millions of words',
+ 'g.s1':'What you can type','g.youType':'You type','g.finds':'It finds','g.s2':'Word types','g.s2p':'Every word in the corpus is labelled with the job it does. The colours are the same everywhere on this page.','g.type':'Type','g.examples':'Examples','g.tech':'Technical tags','g.s3':'What the numbers mean','g.s4':'What’s in Kalima',
  'syn.1':'that word. With All forms on, also roles.','syn.2':'that exact phrase','syn.3':'make a + any one word + difference (make a real difference, made a big difference…)','syn.4':'any adjective followed by water (fresh water, drinking water…)','syn.5':'words that start with inter (interested, international…)','syn.6':'words that end in -ly','syn.7':'Word types you can use in curly brackets',
- 'foot':'© 2026 Tyab Mohammad. All rights reserved. Texts from EWT, GUM, PUD and the public-domain books keep their own licences (see Explore). Starter texts were written for Kalima; the names, people and events in them are invented. Word types are tagged automatically and can contain mistakes.',
+ 'foot':'© 2026 Tyab Mohammad. All rights reserved. Texts from EWT, GUM, PUD, Wikinews, Wikivoyage, Simple English Wikipedia and the public-domain books keep their own licences (see Explore). Starter texts were written for Kalima; the names, people and events in them are invented. Word types outside EWT, GUM and PUD are tagged automatically and can contain mistakes.',
  'nav.jobs':'Word jobs','nav.practice':'Practice','s.title':'Search the corpus',
  'j.lede':'Type any English word or sentence. Kalima shows the job each word is doing, explains how it knows, and teaches you to spot it yourself.',
  'j.label':'Word or sentence','j.ph':'Type a word, like “light”, or a sentence','j.btn':'Show the jobs','j.tip':'One word shows every job it can do. A sentence shows the job of each word.',
@@ -947,11 +894,11 @@ en:{
  'c.pron.relative':'{w} is a relative pronoun: it starts a clause that tells us more about the noun just before it (the man who called, the book that I read).'
 },
 ar:{
- 'brand.sub':'أقسام الكلام بوضوح','nav.search':'ابحث في المدوّنة','nav.explore':'استكشاف','nav.tag':'حلّل نصّي','nav.add':'أضف نصًّا','nav.guide':'الدليل',
+ 'brand.sub':'أقسام الكلام بوضوح','nav.search':'ابحث في المدوّنة','nav.explore':'استكشاف','nav.tag':'حلّل نصّي','nav.guide':'الدليل',
  'meter.words':'{n} كلمة',
  'hero.lede':'ابحث في نصوص إنجليزية حقيقية. شاهد كيف تُستخدم الكلمة فعلًا، وما الكلمات التي ترافقها، والوظيفة التي تؤديها كل كلمة في الجملة.',
  'search.label':'كلمة أو عبارة','search.ph':'اكتب كلمة أو عبارة بالإنجليزية','search.btn':'ابحث',
- 'mode.lemma':'كل الصيغ','mode.form':'الصيغة نفسها','opt.pos':'نوع الكلمة','opt.anyPos':'أي نوع','opt.type':'النصوص','opt.allTypes':'كل أنواع النصوص','try':'جرّب',
+ 'mode.lemma':'كل الصيغ','mode.form':'الصيغة نفسها','opt.pos':'نوع الكلمة','opt.anyPos':'أي نوع','opt.type':'النصوص','opt.allTypes':'كل أنواع النصوص','opt.check':'التصنيف','au.listen':'استمع','au.word':'انطق الكلمة','au.sent':'اسمع الجملة','d.gold':'تصنيف راجعه لغويون','d.auto':'تصنيف آلي من «كلمة»','opt.goldAll':'كل النصوص','opt.goldOnly':'المراجَعة يدويًا فقط','try':'جرّب',
  'st.loading':'جارٍ قراءة المدوّنة… {a} من {b} كلمة','st.loadingTagger':'جارٍ تحميل مصنِّف أنواع الكلمات…',
  'st.basic':'تعذّر تحميل المصنِّف الكامل، لذلك يُستخدم مصنِّف مبسّط. قد تكون أنواع الكلمات أقل دقة.',
  'st.none':'لا توجد نتائج لـ «{q}».','st.noneTip':'تحقّق من الإملاء، أو اختر «كل الصيغ» أو «كل أنواع النصوص»، أو جرّب عبارة أقصر.',
@@ -980,21 +927,10 @@ ar:{
  'x.library':'المكتبة','x.libHint':'كل النصوص في المدوّنة. افتح أي نص لقراءته بألوان أنواع الكلمات.','x.starter':'أساسي','x.comm':'من المجتمع','x.wordsN':'{n} كلمة',
  'r.back':'العودة إلى المكتبة','r.colour':'ألوان أنواع الكلمات',
  't.title':'حلّل نصّي','t.lede':'الصق أي نص إنجليزي، وسيعرض لك «كلمة» وظيفة كل كلمة فيه بالطريقة نفسها التي يحلّل بها المدوّنة كلها.','t.label':'نصّك','t.under':'التسميات تحت الكلمات','t.counts':'أنواع الكلمات في نصّك','t.add':'أضف هذا النص إلى المدوّنة','t.empty':'سيظهر نصّك المحلَّل هنا.',
- 'a.title':'أضف نصًّا','a.lede':'ساعد المدوّنة على النمو. كل نص تضيفه يصبح قابلًا للبحث لكل من يستخدم هذه الصفحة.',
- 'a.f.title':'العنوان','a.f.type':'نوع النص','a.f.region':'المنطقة','a.f.source':'الكاتب أو المصدر','a.f.sourcePh':'مثال: من كتابتي؛ طالب في الصف الثامن بإذنه','a.f.text':'النص','a.f.textPh':'الصق النص الإنجليزي أو اكتبه هنا',
- 'a.f.licence':'كتبتُ هذا النص أو لديّ إذن بمشاركته، ولا يحتوي على معلومات خاصة عن أي شخص.',
- 'a.count':'{n} كلمة','a.submit':'أضف إلى المدوّنة','a.adding':'جارٍ الإضافة…','a.added':'تمت الإضافة. أصبح نصّك جزءًا من المدوّنة.','a.addedParts':'تمت الإضافة في {n} أجزاء. أصبح نصّك جزءًا من المدوّنة.',
- 'a.min':'أضف 30 كلمة إنجليزية على الأقل.','a.needTitle':'أضف عنوانًا للنص.','a.needLicence':'يرجى تأكيد أنه يحق لك مشاركة هذا النص.',
- 'a.failed':'تعذّرت إضافة النص. تحقّق من الاتصال وحاول مرة أخرى.','a.full':'مساحة التخزين ممتلئة، لذا لا يمكن إضافة نصوص جديدة الآن.',
- 'a.readonly':'يمكنك البحث وقراءة كل شيء. أما إضافة النصوص فتحتاج إلى صلاحية «مساهم» في هذه الصفحة، فاطلبها ممن شاركها معك.',
- 'a.nodb':'إضافة النصوص إلى «كلمة» قريبًا. لترى أنواع الكلمات في نصك الآن، استخدم «وظائف الكلمات».',
- 'a.slow':'تعذّر الوصول إلى نصوص المجتمع الآن، لكن المدوّنة الأساسية تعمل.',
- 'a.guide.title':'ماذا تضيف','a.guide.1':'كتاباتك، أو كتابات طلابك بإذنهم.','a.guide.2':'نصوص متاحة للمشاركة: ملكية عامة أو بترخيص مفتوح.','a.guide.3':'لا تضف مقالات صحفية أو كتبًا أو كلمات أغانٍ مملوكة لغيرك.','a.guide.4':'احذف الأسماء وأرقام الهواتف وأي معلومات خاصة أولًا.',
- 'a.recent':'نصوص المجتمع','a.none':'لا توجد نصوص من المجتمع بعد. قد يكون نصّك الأول.','a.remove':'حذف','a.confirm':'حذف هذا النص؟','a.yes':'حذف','a.no':'إبقاء','a.long':'تُقسَّم النصوص الطويلة إلى أجزاء من 20,000 كلمة.',
  'g.title':'كيف تستخدم «كلمة»','g.lede':'المدوّنة اللغوية مجموعة كبيرة من النصوص الحقيقية. البحث فيها يكشف كيف يستخدم الناس الإنجليزية فعلًا، لا ما تقوله القواعد فقط.',
- 'g.s1':'ماذا يمكنك أن تكتب','g.youType':'تكتب','g.finds':'يجد','g.s2':'أنواع الكلمات','g.s2p':'كل كلمة في المدوّنة موسومة بالوظيفة التي تؤديها. الألوان نفسها في كل أجزاء الصفحة.','g.type':'النوع','g.examples':'أمثلة','g.tech':'الوسوم التقنية','g.s3':'ماذا تعني الأرقام','g.s4':'النمو إلى ملايين الكلمات',
+ 'g.s1':'ماذا يمكنك أن تكتب','g.youType':'تكتب','g.finds':'يجد','g.s2':'أنواع الكلمات','g.s2p':'كل كلمة في المدوّنة موسومة بالوظيفة التي تؤديها. الألوان نفسها في كل أجزاء الصفحة.','g.type':'النوع','g.examples':'أمثلة','g.tech':'الوسوم التقنية','g.s3':'ماذا تعني الأرقام','g.s4':'ما الذي تضمه «كلمة»',
  'syn.1':'هذه الكلمة. ومع «كل الصيغ» تجد roles أيضًا.','syn.2':'هذه العبارة كما هي','syn.3':'make a + أي كلمة واحدة + difference','syn.4':'أي صفة يليها water','syn.5':'الكلمات التي تبدأ بـ inter','syn.6':'الكلمات التي تنتهي بـ ly-','syn.7':'أنواع الكلمات التي يمكنك كتابتها بين قوسين معقوفين',
- 'foot':'© 2026 Tyab Mohammad. جميع الحقوق محفوظة. نصوص EWT وGUM وPUD والكتب التي في الملك العام تحتفظ بتراخيصها (انظر «استكشاف»). النصوص الأساسية كُتبت خصيصًا لـ«كلمة»، والأسماء والأشخاص والأحداث فيها متخيَّلة. أنواع الكلمات موسومة آليًا وقد تحتوي على أخطاء.',
+ 'foot':'© 2026 Tyab Mohammad. جميع الحقوق محفوظة. نصوص EWT وGUM وPUD وWikinews وWikivoyage وSimple English Wikipedia والكتب التي في الملك العام تحتفظ بتراخيصها (انظر «استكشاف»). النصوص الأساسية كُتبت خصيصًا لـ«كلمة»، والأسماء والأشخاص والأحداث فيها متخيَّلة. أنواع الكلمات خارج EWT وGUM وPUD موسومة آليًا وقد تحتوي على أخطاء.',
  'nav.jobs':'وظائف الكلمات','nav.practice':'تدرّب','s.title':'ابحث في المدوّنة',
  'j.lede':'اكتب أي كلمة أو جملة إنجليزية. يعرض لك «كلمة» وظيفة كل كلمة، ويشرح كيف عرفها، ويعلّمك كيف تكتشفها بنفسك.',
  'j.label':'كلمة أو جملة','j.ph':'اكتب كلمة أو جملة بالإنجليزية','j.btn':'اعرض الوظائف','j.tip':'الكلمة الواحدة تعرض كل الوظائف التي يمكن أن تؤديها، والجملة تعرض وظيفة كل كلمة فيها.',
@@ -1665,9 +1601,7 @@ async function loadPacks(){
 /* ---------------- corpus index ---------------- */
 let K = null;
 const tagCache = new Map();
-let community = [];
-let communityState = 'waiting'; // waiting | live | slow | absent | error
-function allDocs(){ return CORE.map(d=>({...d, key:'core:'+d.id, community:false, col:'starter'})).concat(packDocs, community); }
+function allDocs(){ return CORE.map(d=>({...d, key:'core:'+d.id, community:false, col:'starter'})).concat(packDocs); }
 
 function buildIndex(docs){
   const F=[],W=[],PRE=[],POST=[],P=[],TG=[],DT=[],L=[],S=[],T=[];
@@ -1692,7 +1626,10 @@ function buildIndex(docs){
   for (const [k,v] of lemmaIdx) lemmaFreq.set(k, v.length);
   const typeWords = {}, regionWords = {}, typeTexts = {};
   for (const x of texts){ typeWords[x.type]=(typeWords[x.type]||0)+x.words; regionWords[x.region]=(regionWords[x.region]||0)+x.words; typeTexts[x.type]=(typeTexts[x.type]||0)+1; }
-  K = {F,W,PRE,POST,P,TG,DT,L,S,T,sents,texts,N,formIdx,lemmaIdx,lemmaFreq,typeWords,regionWords,typeTexts};
+  // the same totals for the texts whose word types linguists checked by hand (EWT, GUM, PUD)
+  const G = {N:0, nTexts:0, typeWords:{}, regionWords:{}, typeTexts:{}};
+  for (const x of texts) if (GOLD_COLS.has(x.col)){ G.N += x.words; G.nTexts++; G.typeWords[x.type]=(G.typeWords[x.type]||0)+x.words; G.regionWords[x.region]=(G.regionWords[x.region]||0)+x.words; G.typeTexts[x.type]=(G.typeTexts[x.type]||0)+1; }
+  K = {F,W,PRE,POST,P,TG,DT,L,S,T,sents,texts,N,formIdx,lemmaIdx,lemmaFreq,typeWords,regionWords,typeTexts,G};
   wordListCache = null;
 }
 
@@ -1726,7 +1663,7 @@ async function rebuild(){
 
 /* ---------------- state ---------------- */
 const state = {
-  ready:false, view:'search', q:'role', mode:'lemma', pos:-1, type:'all', tab:'examples', sort:'order', shown:50,
+  ready:false, view:'search', q:'role', mode:'lemma', pos:-1, type:'all', gold:false, tab:'examples', sort:'order', shown:50,
   colours:true, penn:false, partner:null, L:3, R:3, measure:'dice', minF:2, small:false, seed:7, expanded:new Set(),
   pat:null, hits:[], allHits:[], len:1, k0:0, litLemmas:null, readerText:null, readerTarget:-1,
   wlPos:-1, wlLemma:true, wlSkip:true, tagUnder:false, libCol:'all', libShown:60
@@ -1802,8 +1739,8 @@ function runSearch(resetView){
   };
   if (cands) for (const s of cands) check(s);
   else for (let s=0; s<N && out.length<50000; s++) check(s);
-  state.allHits = out;
-  state.hits = state.type==='all' ? out : out.filter(s=>K.texts[K.T[s]].type===state.type);
+  state.allHits = state.gold ? out.filter(s=>GOLD_COLS.has(K.texts[K.T[s]].col)) : out;
+  state.hits = state.type==='all' ? state.allHits : state.allHits.filter(s=>K.texts[K.T[s]].type===state.type);
 }
 function partnerHit(s, lm){
   const e = s + state.len, sid = K.S[s];
@@ -1858,9 +1795,11 @@ function renderGloss(){
 function renderSearchControls(){
   $('#posSel').innerHTML = '<option value="-1">'+esc(t('opt.anyPos'))+'</option>' + POS.map((p,i)=>'<option value="'+i+'">'+esc(posName(i))+'</option>').join('');
   $('#posSel').value = String(state.pos);
-  const tc = K ? K.typeTexts : {};
+  const tc = K ? agg().typeTexts : {};
   $('#typeSel').innerHTML = '<option value="all">'+esc(t('opt.allTypes'))+'</option>' + TYPES.map(x=>'<option value="'+x.k+'">'+esc(typeName(x.k))+(K?' ('+(tc[x.k]||0)+')':'')+'</option>').join('');
   $('#typeSel').value = state.type;
+  $('#goldSel').innerHTML = '<option value="0">'+esc(t('opt.goldAll'))+'</option><option value="1">'+esc(t('opt.goldOnly'))+'</option>';
+  $('#goldSel').value = state.gold ? '1' : '0';
   $$('#modeSeg button').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.mode===state.mode)));
   const tries = $('#tries');
   tries.innerHTML = '<span>'+esc(t('try'))+'</span>' + TRIES.map(q=>'<button type="button" class="chip" dir="ltr" data-q="'+esc(q)+'">'+esc(q)+'</button>').join('');
@@ -1889,8 +1828,10 @@ function renderResults(){
   else if (state.tab==='chunks') renderChunks();
   else renderWhere();
 }
-function subcorpusWords(){ return state.type==='all' ? K.N : (K.typeWords[state.type]||0); }
-function subcorpusTexts(){ return state.type==='all' ? K.texts.length : (K.typeTexts[state.type]||0); }
+/* totals for the texts being searched: all texts, or only the hand-checked ones */
+function agg(){ return state.gold ? K.G : {N:K.N, nTexts:K.texts.length, typeWords:K.typeWords, regionWords:K.regionWords, typeTexts:K.typeTexts}; }
+function subcorpusWords(){ const a = agg(); return state.type==='all' ? a.N : (a.typeWords[state.type]||0); }
+function subcorpusTexts(){ const a = agg(); return state.type==='all' ? a.nTexts : (a.typeTexts[state.type]||0); }
 function renderSummary(){
   const n = state.hits.length, sw = subcorpusWords();
   const pm = sw ? n/sw*1e6 : 0;
@@ -1908,6 +1849,32 @@ function renderSummary(){
     '<div class="stat"><b>'+fmtR(pm)+'</b><span>'+esc(t('sum.pm'))+'</span></div>'+
     '<div class="stat"><b>'+fmt(tx)+'</b><span>'+esc(t('sum.textsOf',{b:fmt(subcorpusTexts())}))+'</span></div>'+ used;
 }
+/* ---------------- listening ----------------
+   Uses the English voice built into the visitor's phone or computer: free, no server, works offline. */
+const CAN_SPEAK = typeof window !== 'undefined' && 'speechSynthesis' in window && typeof SpeechSynthesisUtterance === 'function';
+let enVoice = null;
+function pickVoice(){
+  try {
+    const vs = speechSynthesis.getVoices().filter(v=>/^en[-_]/i.test(v.lang));
+    const pref = [/en[-_]US/i, /en[-_]GB/i, /en/i];
+    enVoice = null;
+    for (const re of pref){ enVoice = vs.find(v=>re.test(v.lang) && v.localService) || vs.find(v=>re.test(v.lang)); if (enVoice) break; }
+  } catch(e){ enVoice = null; }
+}
+if (CAN_SPEAK){ pickVoice(); try { speechSynthesis.addEventListener('voiceschanged', pickVoice); } catch(e){ speechSynthesis.onvoiceschanged = pickVoice; } }
+let speakingBtn = null;
+function speak(text, btn){
+  if (!CAN_SPEAK || !text) return;
+  speechSynthesis.cancel();
+  if (speakingBtn){ speakingBtn.classList.remove('speaking'); const same = speakingBtn === btn; speakingBtn = null; if (same) return; }   // a second tap stops it
+  const u = new SpeechSynthesisUtterance(text.slice(0, 3000));
+  if (enVoice){ u.voice = enVoice; u.lang = enVoice.lang; } else u.lang = 'en-US';
+  u.rate = 0.9;
+  if (btn){ speakingBtn = btn; btn.classList.add('speaking'); u.onend = u.onerror = ()=>{ btn.classList.remove('speaking'); if (speakingBtn===btn) speakingBtn = null; }; }
+  speechSynthesis.speak(u);
+}
+const SPEAKER_ICON = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+function listenBtn(text, label){ return CAN_SPEAK && text ? '<button type="button" class="btn ghost sm" data-say="'+esc(text)+'">'+SPEAKER_ICON+esc(label)+'</button>' : ''; }
 function kwicLine(s, idx){
   const e = s + state.len, txt = K.texts[K.T[s]];
   const la = Math.max(txt.a, s-14), rb = Math.min(txt.b, e+14);
@@ -1923,7 +1890,8 @@ function kwicLine(s, idx){
   if (open){
     const sent = K.sents[K.S[s]];
     h += '<div class="kd">'+interlinear(sent.a, sent.b, s, e)+
-      '<div class="kd-meta"><span>'+esc(t('d.from'))+': <strong dir="auto">'+esc(txt.title)+'</strong> · '+esc(typeName(txt.type))+' · '+esc(regionName(txt.region))+'</span><span class="grow"></span>'+
+      '<div class="kd-meta"><span>'+esc(t('d.from'))+': <strong dir="auto">'+esc(txt.title)+'</strong> · '+esc(typeName(txt.type))+' · '+esc(regionName(txt.region))+' · <span class="lbl-src">'+esc(t(GOLD_COLS.has(txt.col) ? 'd.gold' : 'd.auto'))+'</span></span><span class="grow"></span>'+
+      listenBtn(plainRange(sent.a, sent.b), t('au.listen'))+
       '<button type="button" class="btn ghost sm" data-copy="'+s+'">'+esc(t('d.copy'))+'</button>'+
       '<button type="button" class="btn ghost sm" data-read="'+K.T[s]+'" data-sent="'+K.S[s]+'">'+esc(t('d.read'))+'</button></div></div>';
   }
@@ -2056,8 +2024,9 @@ function renderChunks(){
 function renderWhere(){
   const byT = {}, byR = {};
   for (const s of state.allHits){ const x = K.texts[K.T[s]]; byT[x.type]=(byT[x.type]||0)+1; byR[x.region]=(byR[x.region]||0)+1; }
-  const tRows = TYPES.filter(x=>K.typeWords[x.k]).map(x=>{ const c = byT[x.k]||0, pm = c/K.typeWords[x.k]*1e6; return {name:typeName(x.k), v:pm, label:fmtR(pm)+' <small>· '+esc(t('w.hits',{n:fmt(c)}))+'</small>'}; });
-  const rRows = REGIONS.filter(x=>K.regionWords[x.k]).map(x=>{ const c = byR[x.k]||0, pm = c/K.regionWords[x.k]*1e6; return {name:regionName(x.k), v:pm, label:fmtR(pm)+' <small>· '+esc(t('w.hits',{n:fmt(c)}))+'</small>'}; });
+  const A = agg();
+  const tRows = TYPES.filter(x=>A.typeWords[x.k]).map(x=>{ const c = byT[x.k]||0, pm = c/A.typeWords[x.k]*1e6; return {name:typeName(x.k), v:pm, label:fmtR(pm)+' <small>· '+esc(t('w.hits',{n:fmt(c)}))+'</small>'}; });
+  const rRows = REGIONS.filter(x=>A.regionWords[x.k]).map(x=>{ const c = byR[x.k]||0, pm = c/A.regionWords[x.k]*1e6; return {name:regionName(x.k), v:pm, label:fmtR(pm)+' <small>· '+esc(t('w.hits',{n:fmt(c)}))+'</small>'}; });
   $('#p-where').innerHTML = '<p class="hint">'+esc(t('w.note'))+'</p><div class="two">'+
     '<div class="box"><h3>'+esc(t('w.type'))+'</h3><div class="bars" style="margin-top:12px">'+bars(tRows)+'</div></div>'+
     '<div class="box"><h3>'+esc(t('w.region'))+'</h3><div class="bars" style="margin-top:12px">'+bars(rRows)+'</div></div></div>';
@@ -2347,7 +2316,7 @@ function renderSheet(){
   h += '<h4>'+esc(t('sh.also'))+'</h4>';
   if (others.length) h += '<div class="also">'+others.slice(0,4).map(o=>'<div class="p'+o.p+'"><span class="dot"></span> <strong>'+esc(posName(o.p))+'</strong> <span class="num" style="color:var(--ink-3)">'+o.n+'×</span><div dir="ltr">'+snippet(o.ex, 6)+'</div></div>').join('')+'</div>';
   else h += '<p class="def" style="color:var(--ink-2)">'+tx(K && (K.formIdx.get(lw)||[]).length > (sheetCtx.where==='jobs'?0:1) ? 'sh.only' : 'sh.notin', {w:wq(k), x:'<strong>'+esc(posName(k.p))+'</strong>'})+'</p>';
-  h += '<div class="sheet-actions"><button type="button" class="btn sm" data-q="'+esc(lw)+'">'+esc(t('sh.search'))+'</button>';
+  h += '<div class="sheet-actions">'+listenBtn(k.w, t('au.word'))+listenBtn(T.map(x=>(x.pre||'')+x.w+(x.post==null?' ':x.post)).join('').replace(/\s+/g,' ').trim(), t('au.sent'))+'<button type="button" class="btn sm" data-q="'+esc(lw)+'">'+esc(t('sh.search'))+'</button>';
   if (corrOK() && !sheetCtx.fixDone) h += '<button type="button" class="btn ghost sm" data-fix-open>'+esc(t('sh.fix'))+'</button>';
   h += '</div>';
   if (sheetCtx.fix && !sheetCtx.fixDone) h += '<p class="hint" style="margin:12px 0 0">'+esc(t('sh.fixQ'))+'</p><div class="fixgrid">'+POS.map((p,n)=> n===k.p ? '' : '<button type="button" class="p'+n+'" data-fix="'+n+'"><span class="dot"></span>'+esc(posName(n))+'</button>').join('')+'</div><p class="hint" style="margin:8px 0 0">'+esc(t('sh.fixNote'))+'</p>';
@@ -2421,7 +2390,7 @@ function taggedHtml(raw){
   }
   const total = counts.reduce((a,b)=>a+b,0) || 1;
   const labelsSeg = '<span class="seg" data-seg="labels">'+[['simple',t('labels.simple')],['penn',t('labels.penn')]].map(([v,l])=>'<button type="button" data-v="'+v+'" aria-pressed="'+((state.penn?'penn':'simple')===v)+'">'+esc(l)+'</button>').join('')+'</span>';
-  return '<div class="toolbar"><label class="check"><input type="checkbox" id="tagUnder" '+(state.tagUnder?'checked':'')+'> '+esc(t('t.under'))+'</label>'+(state.tagUnder?'<span>'+esc(t('labels'))+'</span>'+labelsSeg:'')+'</div>'+
+  return '<div class="toolbar">'+listenBtn(raw.slice(0, 3000), t('au.listen'))+'<label class="check"><input type="checkbox" id="tagUnder" '+(state.tagUnder?'checked':'')+'> '+esc(t('t.under'))+'</label>'+(state.tagUnder?'<span>'+esc(t('labels'))+'</span>'+labelsSeg:'')+'</div>'+
     '<p class="tapnote">'+esc(t('j.tap'))+'</p><div class="box" dir="ltr">'+body+'</div>'+
     '<h3 style="margin-top:20px;font-size:16px">'+esc(t('t.counts'))+'</h3><div class="legend-big">'+POS.map((p,i)=>'<div class="p'+i+'"><span class="dot"></span><span>'+esc(posName(i))+'</span><span class="n">'+counts[i]+' · '+Math.round(counts[i]/total*100)+'%</span></div>').join('')+'</div>';
 }
@@ -2522,129 +2491,17 @@ function renderPractice(){
   el.innerHTML = h + '</div>';
 }
 
-/* ---------------- add a text ---------------- */
-let db = null, userNS = null, canWrite = null, isAdmin = false, myId = null, writeRefused = false, pendingRemove = null;
-function selectOptions(){
-  const ft = $('#fType'), fr = $('#fRegion');
-  const vt = ft.value || 'student', vr = fr.value || 'saudi';
-  ft.innerHTML = TYPES.map(x=>'<option value="'+x.k+'">'+esc(typeName(x.k))+'</option>').join('');
-  fr.innerHTML = REGIONS.map(x=>'<option value="'+x.k+'">'+esc(regionName(x.k))+'</option>').join('');
-  ft.value = vt; fr.value = vr;
-}
-function renderAdd(){
-  $('#road2').innerHTML = roadHtml();
-  const notice = $('#addNotice');
-  let msg = '';
-  if (communityState==='absent') msg = t('a.nodb');
-  else if (writeRefused || canWrite===false) msg = t('a.readonly');
-  else if (communityState==='slow' || communityState==='error') msg = t('a.slow');
-  notice.hidden = !msg; notice.textContent = msg;
-  const disabled = communityState==='absent' || writeRefused || canWrite===false;
-  $$('#addForm input, #addForm select, #addForm textarea, #addForm button').forEach(el=>{ el.disabled = disabled; });
-  updateCount();
-  // community list
-  const items = community.slice().sort((a,b)=> (b.addedAt||'').localeCompare(a.addedAt||''));
-  $('#clist').innerHTML = items.length ? items.slice(0,40).map(d=>{
-    const ti = K ? K.texts.findIndex(x=>x.key===d.key) : -1;
-    const canRemove = isAdmin || (myId && d.by===myId);
-    const confirming = pendingRemove===d.id;
-    return '<div class="citem"><button type="button" class="t" dir="auto" '+(ti>=0?'data-read="'+ti+'"':'')+'>'+esc(d.title)+'</button>'+
-      (canRemove ? (confirming ? '<span class="confirm">'+esc(t('a.confirm'))+' <button type="button" class="btn sm" data-rm-yes="'+esc(d.id)+'">'+esc(t('a.yes'))+'</button><button type="button" class="btn ghost sm" data-rm-no>'+esc(t('a.no'))+'</button></span>' : '<button type="button" class="btn ghost sm" data-rm="'+esc(d.id)+'">'+esc(t('a.remove'))+'</button>') : '<span></span>')+
-      '<span class="m">'+esc(typeName(d.type))+' · '+esc(regionName(d.region))+' · <span class="num">'+esc(t('x.wordsN',{n:fmt(countWords(d.text))}))+'</span>'+(d.addedAt?' · '+esc(d.addedAt.slice(0,10)):'')+'</span></div>';
-  }).join('') : '<p class="hint" style="margin:6px 0 0">'+esc(t('a.none'))+'</p>';
-}
-function updateCount(){
-  const n = countWords($('#fText').value);
-  $('#fCount').textContent = n ? t('a.count',{n:fmt(n)}) + (n>MAX_PART_WORDS ? ' · '+t('a.long') : '') : '';
-}
-function splitParts(text){
-  const paras = text.split(/\n{2,}/);
-  const parts = []; let cur = [], cw = 0;
-  for (const p of paras){
-    const w = countWords(p);
-    if (cw + w > MAX_PART_WORDS && cur.length){ parts.push(cur.join('\n\n')); cur = []; cw = 0; }
-    if (w > MAX_PART_WORDS){
-      const sents = p.split(/(?<=[.!?])\s+/); let buf = [], bw = 0;
-      for (const s of sents){ const sw = countWords(s); if (bw+sw > MAX_PART_WORDS && buf.length){ parts.push(buf.join(' ')); buf=[]; bw=0; } buf.push(s); bw+=sw; }
-      if (buf.length){ cur.push(buf.join(' ')); cw += bw; }
-    } else { cur.push(p); cw += w; }
-  }
-  if (cur.length) parts.push(cur.join('\n\n'));
-  return parts;
-}
-async function submitAdd(ev){
-  ev.preventDefault();
-  const msg = $('#fMsg'); msg.className = 'msg'; msg.textContent = '';
-  const title = $('#fTitle').value.trim(), text = $('#fText').value.replace(/\r/g,'').trim();
-  if (!title){ msg.className='msg bad'; msg.textContent = t('a.needTitle'); $('#fTitle').focus(); return; }
-  if (countWords(text) < 30 || !/[A-Za-z]{2}/.test(text)){ msg.className='msg bad'; msg.textContent = t('a.min'); $('#fText').focus(); return; }
-  if (!$('#fLicence').checked){ msg.className='msg bad'; msg.textContent = t('a.needLicence'); return; }
-  if (!db){ msg.className='msg bad'; msg.textContent = t('a.nodb'); return; }
-  const btn = $('#fSubmit'); btn.disabled = true; btn.textContent = t('a.adding');
-  const parts = splitParts(text);
-  try {
-    for (let i=0;i<parts.length;i++){
-      await db.collection('texts').add({
-        title: (parts.length>1 ? title+' ('+(i+1)+'/'+parts.length+')' : title).slice(0,160),
-        type: $('#fType').value, region: $('#fRegion').value,
-        source: $('#fSource').value.trim().slice(0,200),
-        text: parts[i], words: countWords(parts[i]),
-        addedAt: new Date().toISOString(), by: myId || null
-      });
-    }
-    msg.className='msg ok'; msg.textContent = parts.length>1 ? t('a.addedParts',{n:parts.length}) : t('a.added');
-    $('#fTitle').value=''; $('#fText').value=''; $('#fSource').value=''; $('#fLicence').checked=false; updateCount();
-  } catch(e){
-    const code = e && e.code;
-    if (code==='invalid_argument' && canWrite!==true){ writeRefused = true; renderAdd(); }
-    msg.className='msg bad'; msg.textContent = code==='quota_exceeded' ? t('a.full') : t('a.failed');
-  } finally {
-    btn.disabled = false; btn.textContent = t('a.submit');
-  }
-}
-function normCommunity(doc){
-  const x = doc.data() || {};
-  return {
-    key:'comm:'+doc.id, id:doc.id,
-    title: String(x.title||'Untitled').slice(0,160),
-    type: TYPE_KEYS.has(x.type) ? x.type : 'web',
-    region: REGION_KEYS.has(x.region) ? x.region : 'other',
-    source: String(x.source||'').slice(0,200),
-    text: String(x.text||'').slice(0,400000),
-    community:true, col:'community', by: typeof x.by==='string' ? x.by : null,
-    addedAt: typeof x.addedAt==='string' ? x.addedAt : ''
-  };
-}
-async function connectStore(){
-  // Standalone website: no shared store. CSV export uses an ordinary browser download.
+/* ---------------- shared store ----------------
+   The standalone site has no shared database, so "Suggest the job" stays hidden (corrOK() is false). */
+let db = null, canWrite = null, myId = null, writeRefused = false;
+function connectStore(){
+  // Standalone website: CSV export uses an ordinary browser download.
   DL = {save: async ({filename, data}) => {
     const url = URL.createObjectURL(new Blob([data], {type:'text/csv;charset=utf-8'}));
     const a = document.createElement('a'); a.href = url; a.download = filename;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(()=>URL.revokeObjectURL(url), 4000);
   }};
-  communityState = 'absent'; renderAdd(); return;
-  const cl = window.claude;
-  try { userNS = await cl.use('user'); } catch(e){ userNS = null; }
-  try { DL = await cl.use('downloads'); } catch(e){ DL = null; }
-  if (userNS){
-    try { isAdmin = await userNS.canEdit(); } catch(e){}
-    try { myId = await userNS.id(); } catch(e){}
-    try { canWrite = await userNS.can('data.write'); } catch(e){ canWrite = null; }
-  }
-  try { db = await cl.use('db'); } catch(e){ db = null; }
-  if (!db){ communityState='absent'; renderAdd(); if (state.view==='search') renderResults(); return; }
-  let settled = false;
-  const timer = setTimeout(()=>{ if (!settled){ communityState='slow'; renderAdd(); } }, 10000);
-  db.collection('texts').onSnapshot(snap=>{
-    if (!snap.metadata.fromCache){ settled = true; clearTimeout(timer); communityState='live'; }
-    community = snap.docs.filter(d=>d.exists).map(normCommunity).filter(d=>d.text.trim());
-    if (taggerKind!=='loading' && packState!=='loading') rebuild();
-    renderAdd();
-  }, err=>{ settled = true; clearTimeout(timer); communityState='error'; renderAdd(); });
-  if (state.view==='search') renderResults();
-  if (state.view==='practice') renderPractice();
-  if (sheetCtx) renderSheet();
 }
 
 /* ---------------- guide ---------------- */
@@ -2666,18 +2523,17 @@ function applyStatic(){
   $('#meterMini').textContent = K ? t('meter.words',{n:fmt(K.N)}) : '';
 }
 function renderAll(){
-  applyStatic(); renderGloss(); renderSearchControls(); selectOptions();
+  applyStatic(); renderGloss(); renderSearchControls();
   if (state.view==='search') renderResults();
   if (state.view==='explore'){ renderExplore(); renderReader(); }
   if (state.view==='jobs') renderJobs();
   if (state.view==='practice') renderPractice();
   if (sheetCtx) renderSheet();
-  if (state.view==='add') renderAdd();
   if (state.view==='guide') renderGuide();
 }
 function showView(v){
   if (v==='tag' || v==='add') v = 'jobs';
-  if (!['jobs','practice','search','explore','add','guide'].includes(v)) v = 'jobs';
+  if (!['jobs','practice','search','explore','guide'].includes(v)) v = 'jobs';
   closeSheet();
   const changed = state.view !== v;
   state.view = v;
@@ -2704,12 +2560,14 @@ function bind(){
   $('#modeSeg').addEventListener('click', e=>{ const b = e.target.closest('button[data-mode]'); if (!b) return; state.mode = b.dataset.mode; runSearch(true); renderSearchControls(); renderResults(); });
   $('#posSel').addEventListener('change', e=>{ state.pos = +e.target.value; runSearch(true); renderResults(); });
   $('#typeSel').addEventListener('change', e=>{ state.type = e.target.value; runSearch(true); renderResults(); });
+  $('#goldSel').addEventListener('change', e=>{ state.gold = e.target.value==='1'; runSearch(true); renderSearchControls(); renderResults(); });
   $('#langBtn').addEventListener('click', ()=>{ LANG = LANG==='ar' ? 'en' : 'ar'; store.set('lang', LANG); renderAll(); });
   window.addEventListener('hashchange', ()=>showView(location.hash.slice(1)));
 
   document.addEventListener('click', async e=>{
     const el = e.target;
     let b;
+    if ((b = el.closest('[data-say]'))){ speak(b.dataset.say, b); return; }
     if ((b = el.closest('[data-q]'))){ doSearch(b.dataset.q, {scroll:true}); return; }
     if ((b = el.closest('#resTabs button'))){ state.tab = b.dataset.tab; renderResults(); return; }
     if ((b = el.closest('.kl'))){ const s = +b.dataset.s; if (state.expanded.has(s)) state.expanded.delete(s); else state.expanded.add(s); renderExamples(); return; }
@@ -2758,10 +2616,6 @@ function bind(){
       catch(err){ if (err && (err.code==='unavailable'||err.code==='not_granted'||err.code==='capability_disabled')) btn.hidden = true; }
       return;
     }
-    if (el.closest('#tagToAdd')){ $('#fText').value = $('#jobsIn').value; location.hash = '#add'; setTimeout(()=>{ updateCount(); $('#fTitle').focus(); }, 0); return; }
-    if ((b = el.closest('[data-rm]'))){ pendingRemove = b.dataset.rm; renderAdd(); return; }
-    if (el.closest('[data-rm-no]')){ pendingRemove = null; renderAdd(); return; }
-    if ((b = el.closest('[data-rm-yes]'))){ const id = b.dataset.rmYes; pendingRemove = null; try { await db.doc('texts/'+id).delete(); } catch(err){} renderAdd(); return; }
   });
   document.addEventListener('change', e=>{
     const id = e.target.id;
@@ -2776,8 +2630,6 @@ function bind(){
   $('#jobsIn').addEventListener('input', ()=>{ clearTimeout(jobsTimer); jobsTimer = setTimeout(renderJobs, 350); });
   $('#jobsForm').addEventListener('submit', e=>{ e.preventDefault(); clearTimeout(jobsTimer); renderJobs(); $('#jobsOut').scrollIntoView({block:'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}); });
   document.addEventListener('keydown', e=>{ if (e.key==='Escape' && sheetCtx) closeSheet(); });
-  $('#fText').addEventListener('input', updateCount);
-  $('#addForm').addEventListener('submit', submitAdd);
 }
 
 /* ---------------- boot ---------------- */
