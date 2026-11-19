@@ -36,14 +36,18 @@ if build:
                'byType': [sc['ewt_test']['byClass'][k]['recall'] for k in P], 'mix': mix, 'trainWords': sc.get('trainWords', 0)}
         page = set_const(page, 'ACCURACY', json.dumps(acc, ensure_ascii=False))
         print('accuracy on new EWT text:', acc['test']['acc'], '%')
-    pk_path = os.path.join(build, 'packs', 'accuracy.json')
-    if os.path.exists(pk_path):
-        words = sum(json.load(open(pk_path, encoding='utf8'))['kalimaWords'].values())
-        page = set_const(page, 'PACK_WORDS', str(words))
-        print('words in data files:', words)
     dm_path = os.path.join(build, 'docs_more.json')
     if os.path.exists(dm_path):
         page = set_const(page, 'BOOK_LIST', json.dumps(json.load(open(dm_path, encoding='utf8'))['books'], ensure_ascii=False))
+# word count = every text in every data pack the page loads (each text's header line holds its word count)
+words = 0
+for f in sorted(os.listdir(os.path.join(site, 'data'))):
+    if f.endswith('.txt') and f != 'LICENSES.md':
+        for line in open(os.path.join(site, 'data', f), encoding='utf8'):
+            if line.startswith('#D\t'):
+                words += json.loads(line[3:]).get('words', 0)
+page = set_const(page, 'PACK_WORDS', str(words))
+print('words in data files:', words)
 open(page_path, 'w', encoding='utf8').write(page)
 
 # offline cache name = a fingerprint of every site file, so phones fetch the new version

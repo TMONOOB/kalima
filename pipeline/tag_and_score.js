@@ -2,7 +2,9 @@
 // over the extracted documents, score it against the hand-made UD labels, and write
 // compact pre-tagged packs for the page.
 //
-// usage: node tag_and_score.js <kalima.js> <compromise.js> <docs.json> <outdir>
+// usage: node tag_and_score.js <kalima.js> <compromise.js> <docs.json> <outdir> [model.json]
+// The docs file may hold only collections without hand-checked labels (for example build/docs_wiki.json):
+// those texts are tagged by the model and written to their own pack, and the scores are left empty.
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -156,12 +158,12 @@ function topConfusions(col, limit){
 }
 const result = {
   tagger: 'compromise 14.14.4 + Kalima rules (same code as the page)',
-  ewt: {...score.ewt, acc: pct(score.ewt.ok, score.ewt.n), coverage: pct(score.ewt.n, score.ewt.scorable)},
-  gum: {...score.gum, acc: pct(score.gum.ok, score.gum.n), coverage: pct(score.gum.n, score.gum.scorable)},
+  ewt: score.ewt ? {...score.ewt, acc: pct(score.ewt.ok, score.ewt.n), coverage: pct(score.ewt.n, score.ewt.scorable)} : null,
+  gum: score.gum ? {...score.gum, acc: pct(score.gum.ok, score.gum.n), coverage: pct(score.gum.n, score.gum.scorable)} : null,
   ewtSplits: Object.fromEntries(Object.entries(bySplit).map(([k, v]) => [k, {...v, acc: pct(v.ok, v.n)}])),
   genres: Object.fromEntries(Object.entries(byGenre).map(([k, v]) => [k, {...v, acc: pct(v.ok, v.n)}])),
-  ewtByClass: Object.fromEntries(Object.entries(perClass.ewt).map(([k, v]) => [NAMES[k], {...v, recall: pct(v.ok, v.n)}])),
-  ewtByPred: Object.fromEntries(Object.entries(predClass.ewt).map(([k, v]) => [NAMES[k], {...v, precision: pct(v.ok, v.n)}])),
+  ewtByClass: Object.fromEntries(Object.entries(perClass.ewt || {}).map(([k, v]) => [NAMES[k], {...v, recall: pct(v.ok, v.n)}])),
+  ewtByPred: Object.fromEntries(Object.entries(predClass.ewt || {}).map(([k, v]) => [NAMES[k], {...v, precision: pct(v.ok, v.n)}])),
   ewtConfusions: topConfusions('ewt', 12),
   kalimaWords: totalKalimaWords, alignMiss, codes: codeTable.length,
   seconds: Math.round((Date.now() - t0) / 1000)
